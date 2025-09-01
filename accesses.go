@@ -1,5 +1,7 @@
 package accesses
 
+import "io"
+
 type Accesses string
 
 const (
