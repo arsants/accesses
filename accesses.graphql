@@ -29,4 +29,5 @@ enum Accesses {
     VIEW_ORGANIZATION_TREE
 
     MANAGE_ENTITIES
+    TEST
 }
