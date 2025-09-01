@@ -1,4 +1,4 @@
-package graphql
+package accesses
 
 type Accesses string
 
