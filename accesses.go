@@ -7,6 +7,7 @@ import (
 	"bytes"
 )
 
+// Custom Accesses
 type Accesses string
 
 const (
