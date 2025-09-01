@@ -30,4 +30,5 @@ enum Accesses {
 
     MANAGE_ENTITIES
     TEST
+    MEGA_TEST
 }
