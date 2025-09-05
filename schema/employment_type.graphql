@@ -1,0 +1,5 @@
+enum EmploymentTypeEnum {
+    EMPLOYEE
+    SELF_EMPLOYED
+    CONTRACTOR
+}

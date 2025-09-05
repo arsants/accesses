@@ -9,94 +9,242 @@ import (
 	"strconv"
 )
 
-type Accesses string
+type AccessesEnum string
 
 const (
-	AccessesViewProfile                 Accesses = "VIEW_PROFILE"
-	AccessesViewProfileBu               Accesses = "VIEW_PROFILE_BU"
-	AccessesEditProfile                 Accesses = "EDIT_PROFILE"
-	AccessesEditProfileBu               Accesses = "EDIT_PROFILE_BU"
-	AccessesCreateProfile               Accesses = "CREATE_PROFILE"
-	AccessesViewTeam                    Accesses = "VIEW_TEAM"
-	AccessesViewTeamBu                  Accesses = "VIEW_TEAM_BU"
-	AccessesViewTeamList                Accesses = "VIEW_TEAM_LIST"
-	AccessesCreateTeam                  Accesses = "CREATE_TEAM"
-	AccessesEditTeam                    Accesses = "EDIT_TEAM"
-	AccessesDeleteTeam                  Accesses = "DELETE_TEAM"
-	AccessesViewProfileList             Accesses = "VIEW_PROFILE_LIST"
-	AccessesViewProfileListBu           Accesses = "VIEW_PROFILE_LIST_BU"
-	AccessesExportFilteredProfileList   Accesses = "EXPORT_FILTERED_PROFILE_LIST"
-	AccessesExportFilteredProfileListBu Accesses = "EXPORT_FILTERED_PROFILE_LIST_BU"
-	AccessesExportTeamMembers           Accesses = "EXPORT_TEAM_MEMBERS"
-	AccessesMigrateProfiles             Accesses = "MIGRATE_PROFILES"
-	AccessesCreateAccessRequests        Accesses = "CREATE_ACCESS_REQUESTS"
-	AccessesUpdateAccessRequests        Accesses = "UPDATE_ACCESS_REQUESTS"
-	AccessesDeleteAccessRequests        Accesses = "DELETE_ACCESS_REQUESTS"
-	AccessesViewAccessRequests          Accesses = "VIEW_ACCESS_REQUESTS"
-	AccessesViewOrganizationTree        Accesses = "VIEW_ORGANIZATION_TREE"
-	AccessesManageEntities              Accesses = "MANAGE_ENTITIES"
-	AccessesTest                        Accesses = "TEST"
-	AccessesMegaTest                    Accesses = "MEGA_TEST"
+	AccessesEnumCreateProfile                          AccessesEnum = "CREATE_PROFILE"
+	AccessesEnumViewProfile                            AccessesEnum = "VIEW_PROFILE"
+	AccessesEnumViewProfileAllBu                       AccessesEnum = "VIEW_PROFILE_ALL_BU"
+	AccessesEnumViewProfileAllStatuses                 AccessesEnum = "VIEW_PROFILE_ALL_STATUSES"
+	AccessesEnumEditProfile                            AccessesEnum = "EDIT_PROFILE"
+	AccessesEnumEditProfileAllBu                       AccessesEnum = "EDIT_PROFILE_ALL_BU"
+	AccessesEnumEditProfileAllStatuses                 AccessesEnum = "EDIT_PROFILE_ALL_STATUSES"
+	AccessesEnumViewProfileList                        AccessesEnum = "VIEW_PROFILE_LIST"
+	AccessesEnumViewProfileListAllBu                   AccessesEnum = "VIEW_PROFILE_LIST_ALL_BU"
+	AccessesEnumViewProfileListAllStatuses             AccessesEnum = "VIEW_PROFILE_LIST_ALL_STATUSES"
+	AccessesEnumExportFilteredProfileList              AccessesEnum = "EXPORT_FILTERED_PROFILE_LIST"
+	AccessesEnumExportFilteredProfileAllBu             AccessesEnum = "EXPORT_FILTERED_PROFILE_ALL_BU"
+	AccessesEnumExportFilteredProfileAllStatuses       AccessesEnum = "EXPORT_FILTERED_PROFILE_ALL_STATUSES"
+	AccessesEnumCreateTeam                             AccessesEnum = "CREATE_TEAM"
+	AccessesEnumViewTeam                               AccessesEnum = "VIEW_TEAM"
+	AccessesEnumEditTeam                               AccessesEnum = "EDIT_TEAM"
+	AccessesEnumDeleteTeam                             AccessesEnum = "DELETE_TEAM"
+	AccessesEnumMigrateProfiles                        AccessesEnum = "MIGRATE_PROFILES"
+	AccessesEnumManageEntities                         AccessesEnum = "MANAGE_ENTITIES"
+	AccessesEnumManagePermissions                      AccessesEnum = "MANAGE_PERMISSIONS"
+	AccessesEnumCreateTask                             AccessesEnum = "CREATE_TASK"
+	AccessesEnumViewTask                               AccessesEnum = "VIEW_TASK"
+	AccessesEnumAssignTask                             AccessesEnum = "ASSIGN_TASK"
+	AccessesEnumViewTaskListFull                       AccessesEnum = "VIEW_TASK_LIST_FULL"
+	AccessesEnumViewTaskListAuthor                     AccessesEnum = "VIEW_TASK_LIST_AUTHOR"
+	AccessesEnumViewTaskListMonitoring                 AccessesEnum = "VIEW_TASK_LIST_MONITORING"
+	AccessesEnumViewTaskListSupport                    AccessesEnum = "VIEW_TASK_LIST_SUPPORT"
+	AccessesEnumCreateAccessRequests                   AccessesEnum = "CREATE_ACCESS_REQUESTS"
+	AccessesEnumViewAccessRequests                     AccessesEnum = "VIEW_ACCESS_REQUESTS"
+	AccessesEnumUpdateAccessRequests                   AccessesEnum = "UPDATE_ACCESS_REQUESTS"
+	AccessesEnumDeleteAccessRequests                   AccessesEnum = "DELETE_ACCESS_REQUESTS"
+	AccessesEnumViewAttrProfileFullname                AccessesEnum = "VIEW_ATTR_PROFILE_FULLNAME"
+	AccessesEnumUpdateAttrProfileFullname              AccessesEnum = "UPDATE_ATTR_PROFILE_FULLNAME"
+	AccessesEnumViewAttrProfileInn                     AccessesEnum = "VIEW_ATTR_PROFILE_INN"
+	AccessesEnumUpdateAttrProfileInn                   AccessesEnum = "UPDATE_ATTR_PROFILE_INN"
+	AccessesEnumViewAttrProfilePersonalEmail           AccessesEnum = "VIEW_ATTR_PROFILE_PERSONAL_EMAIL"
+	AccessesEnumUpdateAttrProfilePersonalEmail         AccessesEnum = "UPDATE_ATTR_PROFILE_PERSONAL_EMAIL"
+	AccessesEnumViewAttrProfilePersonalPhone           AccessesEnum = "VIEW_ATTR_PROFILE_PERSONAL_PHONE"
+	AccessesEnumUpdateAttrProfilePersonalPhone         AccessesEnum = "UPDATE_ATTR_PROFILE_PERSONAL_PHONE"
+	AccessesEnumViewAttrProfileWorkingEmail            AccessesEnum = "VIEW_ATTR_PROFILE_WORKING_EMAIL"
+	AccessesEnumUpdateAttrProfileWorkingEmail          AccessesEnum = "UPDATE_ATTR_PROFILE_WORKING_EMAIL"
+	AccessesEnumViewAttrProfileWorkingPhone            AccessesEnum = "VIEW_ATTR_PROFILE_WORKING_PHONE"
+	AccessesEnumUpdateAttrProfileWorkingPhone          AccessesEnum = "UPDATE_ATTR_PROFILE_WORKING_PHONE"
+	AccessesEnumViewAttrProfilePersonalTg              AccessesEnum = "VIEW_ATTR_PROFILE_PERSONAL_TG"
+	AccessesEnumUpdateAttrProfilePersonalTg            AccessesEnum = "UPDATE_ATTR_PROFILE_PERSONAL_TG"
+	AccessesEnumViewAttrProfileBirthDate               AccessesEnum = "VIEW_ATTR_PROFILE_BIRTH_DATE"
+	AccessesEnumUpdateAttrProfileBirthDate             AccessesEnum = "UPDATE_ATTR_PROFILE_BIRTH_DATE"
+	AccessesEnumViewAttrProfileDisability              AccessesEnum = "VIEW_ATTR_PROFILE_DISABILITY"
+	AccessesEnumUpdateAttrProfileDisability            AccessesEnum = "UPDATE_ATTR_PROFILE_DISABILITY"
+	AccessesEnumViewAttrProfilePregnancy               AccessesEnum = "VIEW_ATTR_PROFILE_PREGNANCY"
+	AccessesEnumUpdateAttrProfilePregnancy             AccessesEnum = "UPDATE_ATTR_PROFILE_PREGNANCY"
+	AccessesEnumViewAttrProfileSupervisor              AccessesEnum = "VIEW_ATTR_PROFILE_SUPERVISOR"
+	AccessesEnumUpdateAttrProfileSupervisor            AccessesEnum = "UPDATE_ATTR_PROFILE_SUPERVISOR"
+	AccessesEnumViewAttrProfileCity                    AccessesEnum = "VIEW_ATTR_PROFILE_CITY"
+	AccessesEnumUpdateAttrProfileCity                  AccessesEnum = "UPDATE_ATTR_PROFILE_CITY"
+	AccessesEnumViewAttrProfileEducation               AccessesEnum = "VIEW_ATTR_PROFILE_EDUCATION"
+	AccessesEnumUpdateAttrProfileEducation             AccessesEnum = "UPDATE_ATTR_PROFILE_EDUCATION"
+	AccessesEnumViewAttrProfileSex                     AccessesEnum = "VIEW_ATTR_PROFILE_SEX"
+	AccessesEnumUpdateAttrProfileSex                   AccessesEnum = "UPDATE_ATTR_PROFILE_SEX"
+	AccessesEnumViewAttrProfileBusinessUnit            AccessesEnum = "VIEW_ATTR_PROFILE_BUSINESS_UNIT"
+	AccessesEnumUpdateAttrProfileBusinessUnit          AccessesEnum = "UPDATE_ATTR_PROFILE_BUSINESS_UNIT"
+	AccessesEnumViewAttrProfileStructure               AccessesEnum = "VIEW_ATTR_PROFILE_STRUCTURE"
+	AccessesEnumUpdateAttrProfileStructure             AccessesEnum = "UPDATE_ATTR_PROFILE_STRUCTURE"
+	AccessesEnumViewAttrProfilePosition                AccessesEnum = "VIEW_ATTR_PROFILE_POSITION"
+	AccessesEnumUpdateAttrProfilePosition              AccessesEnum = "UPDATE_ATTR_PROFILE_POSITION"
+	AccessesEnumViewAttrProfileDynSpecialPosition      AccessesEnum = "VIEW_ATTR_PROFILE_DYN_SPECIAL_POSITION"
+	AccessesEnumUpdateAttrProfileDynSpecialPosition    AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_SPECIAL_POSITION"
+	AccessesEnumViewAttrProfileEmploymentType          AccessesEnum = "VIEW_ATTR_PROFILE_EMPLOYMENT_TYPE"
+	AccessesEnumUpdateAttrProfileEmploymentType        AccessesEnum = "UPDATE_ATTR_PROFILE_EMPLOYMENT_TYPE"
+	AccessesEnumViewAttrProfileDynCompany              AccessesEnum = "VIEW_ATTR_PROFILE_DYN_COMPANY"
+	AccessesEnumUpdateAttrProfileDynCompany            AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_COMPANY"
+	AccessesEnumViewAttrProfileDynRate                 AccessesEnum = "VIEW_ATTR_PROFILE_DYN_RATE"
+	AccessesEnumUpdateAttrProfileDynRate               AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_RATE"
+	AccessesEnumViewAttrProfileDynWorkExperience       AccessesEnum = "VIEW_ATTR_PROFILE_DYN_WORK_EXPERIENCE"
+	AccessesEnumUpdateAttrProfileDynWorkExperience     AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_WORK_EXPERIENCE"
+	AccessesEnumViewAttrProfileDynOperationMode        AccessesEnum = "VIEW_ATTR_PROFILE_DYN_OPERATION_MODE"
+	AccessesEnumUpdateAttrProfileDynOperationMode      AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_OPERATION_MODE"
+	AccessesEnumViewAttrProfileDynWorkScheme           AccessesEnum = "VIEW_ATTR_PROFILE_DYN_WORK_SCHEME"
+	AccessesEnumUpdateAttrProfileDynWorkScheme         AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_WORK_SCHEME"
+	AccessesEnumViewAttrProfileDynWorkSchedule         AccessesEnum = "VIEW_ATTR_PROFILE_DYN_WORK_SCHEDULE"
+	AccessesEnumUpdateAttrProfileDynWorkSchedule       AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_WORK_SCHEDULE"
+	AccessesEnumViewAttrProfileDynWorkingHours         AccessesEnum = "VIEW_ATTR_PROFILE_DYN_WORKING_HOURS"
+	AccessesEnumUpdateAttrProfileDynWorkingHours       AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_WORKING_HOURS"
+	AccessesEnumViewAttrProfileStatus                  AccessesEnum = "VIEW_ATTR_PROFILE_STATUS"
+	AccessesEnumUpdateAttrProfileStatus                AccessesEnum = "UPDATE_ATTR_PROFILE_STATUS"
+	AccessesEnumViewAttrProfileDynEmploymentDate       AccessesEnum = "VIEW_ATTR_PROFILE_DYN_EMPLOYMENT_DATE"
+	AccessesEnumUpdateAttrProfileDynEmploymentDate     AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_EMPLOYMENT_DATE"
+	AccessesEnumViewAttrProfileDynDropoutDate          AccessesEnum = "VIEW_ATTR_PROFILE_DYN_DROPOUT_DATE"
+	AccessesEnumUpdateAttrProfileDynDropoutDate        AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_DROPOUT_DATE"
+	AccessesEnumViewAttrProfileDynReasonForDropout     AccessesEnum = "VIEW_ATTR_PROFILE_DYN_REASON_FOR_DROPOUT"
+	AccessesEnumUpdateAttrProfileDynReasonForDropout   AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_REASON_FOR_DROPOUT"
+	AccessesEnumViewAttrProfileDynReasonForDismissal   AccessesEnum = "VIEW_ATTR_PROFILE_DYN_REASON_FOR_DISMISSAL"
+	AccessesEnumUpdateAttrProfileDynReasonForDismissal AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_REASON_FOR_DISMISSAL"
+	AccessesEnumViewAttrProfileDynFraud                AccessesEnum = "VIEW_ATTR_PROFILE_DYN_FRAUD"
+	AccessesEnumUpdateAttrProfileDynFraud              AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_FRAUD"
+	AccessesEnumViewAttrProfileDynReserve              AccessesEnum = "VIEW_ATTR_PROFILE_DYN_RESERVE"
+	AccessesEnumUpdateAttrProfileDynReserve            AccessesEnum = "UPDATE_ATTR_PROFILE_DYN_RESERVE"
+	AccessesEnumViewAttrProfileSkills                  AccessesEnum = "VIEW_ATTR_PROFILE_SKILLS"
+	AccessesEnumUpdateAttrProfileSkills                AccessesEnum = "UPDATE_ATTR_PROFILE_SKILLS"
 )
 
-var AllAccesses = []Accesses{
-	AccessesViewProfile,
-	AccessesViewProfileBu,
-	AccessesEditProfile,
-	AccessesEditProfileBu,
-	AccessesCreateProfile,
-	AccessesViewTeam,
-	AccessesViewTeamBu,
-	AccessesViewTeamList,
-	AccessesCreateTeam,
-	AccessesEditTeam,
-	AccessesDeleteTeam,
-	AccessesViewProfileList,
-	AccessesViewProfileListBu,
-	AccessesExportFilteredProfileList,
-	AccessesExportFilteredProfileListBu,
-	AccessesExportTeamMembers,
-	AccessesMigrateProfiles,
-	AccessesCreateAccessRequests,
-	AccessesUpdateAccessRequests,
-	AccessesDeleteAccessRequests,
-	AccessesViewAccessRequests,
-	AccessesViewOrganizationTree,
-	AccessesManageEntities,
-	AccessesTest,
-	AccessesMegaTest,
+var AllAccessesEnum = []AccessesEnum{
+	AccessesEnumCreateProfile,
+	AccessesEnumViewProfile,
+	AccessesEnumViewProfileAllBu,
+	AccessesEnumViewProfileAllStatuses,
+	AccessesEnumEditProfile,
+	AccessesEnumEditProfileAllBu,
+	AccessesEnumEditProfileAllStatuses,
+	AccessesEnumViewProfileList,
+	AccessesEnumViewProfileListAllBu,
+	AccessesEnumViewProfileListAllStatuses,
+	AccessesEnumExportFilteredProfileList,
+	AccessesEnumExportFilteredProfileAllBu,
+	AccessesEnumExportFilteredProfileAllStatuses,
+	AccessesEnumCreateTeam,
+	AccessesEnumViewTeam,
+	AccessesEnumEditTeam,
+	AccessesEnumDeleteTeam,
+	AccessesEnumMigrateProfiles,
+	AccessesEnumManageEntities,
+	AccessesEnumManagePermissions,
+	AccessesEnumCreateTask,
+	AccessesEnumViewTask,
+	AccessesEnumAssignTask,
+	AccessesEnumViewTaskListFull,
+	AccessesEnumViewTaskListAuthor,
+	AccessesEnumViewTaskListMonitoring,
+	AccessesEnumViewTaskListSupport,
+	AccessesEnumCreateAccessRequests,
+	AccessesEnumViewAccessRequests,
+	AccessesEnumUpdateAccessRequests,
+	AccessesEnumDeleteAccessRequests,
+	AccessesEnumViewAttrProfileFullname,
+	AccessesEnumUpdateAttrProfileFullname,
+	AccessesEnumViewAttrProfileInn,
+	AccessesEnumUpdateAttrProfileInn,
+	AccessesEnumViewAttrProfilePersonalEmail,
+	AccessesEnumUpdateAttrProfilePersonalEmail,
+	AccessesEnumViewAttrProfilePersonalPhone,
+	AccessesEnumUpdateAttrProfilePersonalPhone,
+	AccessesEnumViewAttrProfileWorkingEmail,
+	AccessesEnumUpdateAttrProfileWorkingEmail,
+	AccessesEnumViewAttrProfileWorkingPhone,
+	AccessesEnumUpdateAttrProfileWorkingPhone,
+	AccessesEnumViewAttrProfilePersonalTg,
+	AccessesEnumUpdateAttrProfilePersonalTg,
+	AccessesEnumViewAttrProfileBirthDate,
+	AccessesEnumUpdateAttrProfileBirthDate,
+	AccessesEnumViewAttrProfileDisability,
+	AccessesEnumUpdateAttrProfileDisability,
+	AccessesEnumViewAttrProfilePregnancy,
+	AccessesEnumUpdateAttrProfilePregnancy,
+	AccessesEnumViewAttrProfileSupervisor,
+	AccessesEnumUpdateAttrProfileSupervisor,
+	AccessesEnumViewAttrProfileCity,
+	AccessesEnumUpdateAttrProfileCity,
+	AccessesEnumViewAttrProfileEducation,
+	AccessesEnumUpdateAttrProfileEducation,
+	AccessesEnumViewAttrProfileSex,
+	AccessesEnumUpdateAttrProfileSex,
+	AccessesEnumViewAttrProfileBusinessUnit,
+	AccessesEnumUpdateAttrProfileBusinessUnit,
+	AccessesEnumViewAttrProfileStructure,
+	AccessesEnumUpdateAttrProfileStructure,
+	AccessesEnumViewAttrProfilePosition,
+	AccessesEnumUpdateAttrProfilePosition,
+	AccessesEnumViewAttrProfileDynSpecialPosition,
+	AccessesEnumUpdateAttrProfileDynSpecialPosition,
+	AccessesEnumViewAttrProfileEmploymentType,
+	AccessesEnumUpdateAttrProfileEmploymentType,
+	AccessesEnumViewAttrProfileDynCompany,
+	AccessesEnumUpdateAttrProfileDynCompany,
+	AccessesEnumViewAttrProfileDynRate,
+	AccessesEnumUpdateAttrProfileDynRate,
+	AccessesEnumViewAttrProfileDynWorkExperience,
+	AccessesEnumUpdateAttrProfileDynWorkExperience,
+	AccessesEnumViewAttrProfileDynOperationMode,
+	AccessesEnumUpdateAttrProfileDynOperationMode,
+	AccessesEnumViewAttrProfileDynWorkScheme,
+	AccessesEnumUpdateAttrProfileDynWorkScheme,
+	AccessesEnumViewAttrProfileDynWorkSchedule,
+	AccessesEnumUpdateAttrProfileDynWorkSchedule,
+	AccessesEnumViewAttrProfileDynWorkingHours,
+	AccessesEnumUpdateAttrProfileDynWorkingHours,
+	AccessesEnumViewAttrProfileStatus,
+	AccessesEnumUpdateAttrProfileStatus,
+	AccessesEnumViewAttrProfileDynEmploymentDate,
+	AccessesEnumUpdateAttrProfileDynEmploymentDate,
+	AccessesEnumViewAttrProfileDynDropoutDate,
+	AccessesEnumUpdateAttrProfileDynDropoutDate,
+	AccessesEnumViewAttrProfileDynReasonForDropout,
+	AccessesEnumUpdateAttrProfileDynReasonForDropout,
+	AccessesEnumViewAttrProfileDynReasonForDismissal,
+	AccessesEnumUpdateAttrProfileDynReasonForDismissal,
+	AccessesEnumViewAttrProfileDynFraud,
+	AccessesEnumUpdateAttrProfileDynFraud,
+	AccessesEnumViewAttrProfileDynReserve,
+	AccessesEnumUpdateAttrProfileDynReserve,
+	AccessesEnumViewAttrProfileSkills,
+	AccessesEnumUpdateAttrProfileSkills,
 }
 
-func (e Accesses) IsValid() bool {
+func (e AccessesEnum) IsValid() bool {
 	switch e {
-	case AccessesViewProfile, AccessesViewProfileBu, AccessesEditProfile, AccessesEditProfileBu, AccessesCreateProfile, AccessesViewTeam, AccessesViewTeamBu, AccessesViewTeamList, AccessesCreateTeam, AccessesEditTeam, AccessesDeleteTeam, AccessesViewProfileList, AccessesViewProfileListBu, AccessesExportFilteredProfileList, AccessesExportFilteredProfileListBu, AccessesExportTeamMembers, AccessesMigrateProfiles, AccessesCreateAccessRequests, AccessesUpdateAccessRequests, AccessesDeleteAccessRequests, AccessesViewAccessRequests, AccessesViewOrganizationTree, AccessesManageEntities, AccessesTest, AccessesMegaTest:
+	case AccessesEnumCreateProfile, AccessesEnumViewProfile, AccessesEnumViewProfileAllBu, AccessesEnumViewProfileAllStatuses, AccessesEnumEditProfile, AccessesEnumEditProfileAllBu, AccessesEnumEditProfileAllStatuses, AccessesEnumViewProfileList, AccessesEnumViewProfileListAllBu, AccessesEnumViewProfileListAllStatuses, AccessesEnumExportFilteredProfileList, AccessesEnumExportFilteredProfileAllBu, AccessesEnumExportFilteredProfileAllStatuses, AccessesEnumCreateTeam, AccessesEnumViewTeam, AccessesEnumEditTeam, AccessesEnumDeleteTeam, AccessesEnumMigrateProfiles, AccessesEnumManageEntities, AccessesEnumManagePermissions, AccessesEnumCreateTask, AccessesEnumViewTask, AccessesEnumAssignTask, AccessesEnumViewTaskListFull, AccessesEnumViewTaskListAuthor, AccessesEnumViewTaskListMonitoring, AccessesEnumViewTaskListSupport, AccessesEnumCreateAccessRequests, AccessesEnumViewAccessRequests, AccessesEnumUpdateAccessRequests, AccessesEnumDeleteAccessRequests, AccessesEnumViewAttrProfileFullname, AccessesEnumUpdateAttrProfileFullname, AccessesEnumViewAttrProfileInn, AccessesEnumUpdateAttrProfileInn, AccessesEnumViewAttrProfilePersonalEmail, AccessesEnumUpdateAttrProfilePersonalEmail, AccessesEnumViewAttrProfilePersonalPhone, AccessesEnumUpdateAttrProfilePersonalPhone, AccessesEnumViewAttrProfileWorkingEmail, AccessesEnumUpdateAttrProfileWorkingEmail, AccessesEnumViewAttrProfileWorkingPhone, AccessesEnumUpdateAttrProfileWorkingPhone, AccessesEnumViewAttrProfilePersonalTg, AccessesEnumUpdateAttrProfilePersonalTg, AccessesEnumViewAttrProfileBirthDate, AccessesEnumUpdateAttrProfileBirthDate, AccessesEnumViewAttrProfileDisability, AccessesEnumUpdateAttrProfileDisability, AccessesEnumViewAttrProfilePregnancy, AccessesEnumUpdateAttrProfilePregnancy, AccessesEnumViewAttrProfileSupervisor, AccessesEnumUpdateAttrProfileSupervisor, AccessesEnumViewAttrProfileCity, AccessesEnumUpdateAttrProfileCity, AccessesEnumViewAttrProfileEducation, AccessesEnumUpdateAttrProfileEducation, AccessesEnumViewAttrProfileSex, AccessesEnumUpdateAttrProfileSex, AccessesEnumViewAttrProfileBusinessUnit, AccessesEnumUpdateAttrProfileBusinessUnit, AccessesEnumViewAttrProfileStructure, AccessesEnumUpdateAttrProfileStructure, AccessesEnumViewAttrProfilePosition, AccessesEnumUpdateAttrProfilePosition, AccessesEnumViewAttrProfileDynSpecialPosition, AccessesEnumUpdateAttrProfileDynSpecialPosition, AccessesEnumViewAttrProfileEmploymentType, AccessesEnumUpdateAttrProfileEmploymentType, AccessesEnumViewAttrProfileDynCompany, AccessesEnumUpdateAttrProfileDynCompany, AccessesEnumViewAttrProfileDynRate, AccessesEnumUpdateAttrProfileDynRate, AccessesEnumViewAttrProfileDynWorkExperience, AccessesEnumUpdateAttrProfileDynWorkExperience, AccessesEnumViewAttrProfileDynOperationMode, AccessesEnumUpdateAttrProfileDynOperationMode, AccessesEnumViewAttrProfileDynWorkScheme, AccessesEnumUpdateAttrProfileDynWorkScheme, AccessesEnumViewAttrProfileDynWorkSchedule, AccessesEnumUpdateAttrProfileDynWorkSchedule, AccessesEnumViewAttrProfileDynWorkingHours, AccessesEnumUpdateAttrProfileDynWorkingHours, AccessesEnumViewAttrProfileStatus, AccessesEnumUpdateAttrProfileStatus, AccessesEnumViewAttrProfileDynEmploymentDate, AccessesEnumUpdateAttrProfileDynEmploymentDate, AccessesEnumViewAttrProfileDynDropoutDate, AccessesEnumUpdateAttrProfileDynDropoutDate, AccessesEnumViewAttrProfileDynReasonForDropout, AccessesEnumUpdateAttrProfileDynReasonForDropout, AccessesEnumViewAttrProfileDynReasonForDismissal, AccessesEnumUpdateAttrProfileDynReasonForDismissal, AccessesEnumViewAttrProfileDynFraud, AccessesEnumUpdateAttrProfileDynFraud, AccessesEnumViewAttrProfileDynReserve, AccessesEnumUpdateAttrProfileDynReserve, AccessesEnumViewAttrProfileSkills, AccessesEnumUpdateAttrProfileSkills:
 		return true
 	}
 	return false
 }
 
-func (e Accesses) String() string {
+func (e AccessesEnum) String() string {
 	return string(e)
 }
 
-func (e *Accesses) UnmarshalGQL(v any) error {
+func (e *AccessesEnum) UnmarshalGQL(v any) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
 	}
 
-	*e = Accesses(str)
+	*e = AccessesEnum(str)
 	if !e.IsValid() {
-		return fmt.Errorf("%s is not a valid Accesses", str)
+		return fmt.Errorf("%s is not a valid AccessesEnum", str)
 	}
 	return nil
 }
 
-func (e Accesses) MarshalGQL(w io.Writer) {
+func (e AccessesEnum) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
-func (e *Accesses) UnmarshalJSON(b []byte) error {
+func (e *AccessesEnum) UnmarshalJSON(b []byte) error {
 	s, err := strconv.Unquote(string(b))
 	if err != nil {
 		return err
@@ -104,7 +252,121 @@ func (e *Accesses) UnmarshalJSON(b []byte) error {
 	return e.UnmarshalGQL(s)
 }
 
-func (e Accesses) MarshalJSON() ([]byte, error) {
+func (e AccessesEnum) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
+}
+
+type BusinessUnitEnum string
+
+const (
+	BusinessUnitEnumMm    BusinessUnitEnum = "MM"
+	BusinessUnitEnumSmkt  BusinessUnitEnum = "SMKT"
+	BusinessUnitEnumKuper BusinessUnitEnum = "KUPER"
+)
+
+var AllBusinessUnitEnum = []BusinessUnitEnum{
+	BusinessUnitEnumMm,
+	BusinessUnitEnumSmkt,
+	BusinessUnitEnumKuper,
+}
+
+func (e BusinessUnitEnum) IsValid() bool {
+	switch e {
+	case BusinessUnitEnumMm, BusinessUnitEnumSmkt, BusinessUnitEnumKuper:
+		return true
+	}
+	return false
+}
+
+func (e BusinessUnitEnum) String() string {
+	return string(e)
+}
+
+func (e *BusinessUnitEnum) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = BusinessUnitEnum(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid BusinessUnitEnum", str)
+	}
+	return nil
+}
+
+func (e BusinessUnitEnum) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *BusinessUnitEnum) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e BusinessUnitEnum) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
+}
+
+type EmploymentTypeEnum string
+
+const (
+	EmploymentTypeEnumEmployee     EmploymentTypeEnum = "EMPLOYEE"
+	EmploymentTypeEnumSelfEmployed EmploymentTypeEnum = "SELF_EMPLOYED"
+	EmploymentTypeEnumContractor   EmploymentTypeEnum = "CONTRACTOR"
+)
+
+var AllEmploymentTypeEnum = []EmploymentTypeEnum{
+	EmploymentTypeEnumEmployee,
+	EmploymentTypeEnumSelfEmployed,
+	EmploymentTypeEnumContractor,
+}
+
+func (e EmploymentTypeEnum) IsValid() bool {
+	switch e {
+	case EmploymentTypeEnumEmployee, EmploymentTypeEnumSelfEmployed, EmploymentTypeEnumContractor:
+		return true
+	}
+	return false
+}
+
+func (e EmploymentTypeEnum) String() string {
+	return string(e)
+}
+
+func (e *EmploymentTypeEnum) UnmarshalGQL(v any) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = EmploymentTypeEnum(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid EmploymentTypeEnum", str)
+	}
+	return nil
+}
+
+func (e EmploymentTypeEnum) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *EmploymentTypeEnum) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e EmploymentTypeEnum) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	e.MarshalGQL(&buf)
 	return buf.Bytes(), nil

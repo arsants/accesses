@@ -1,0 +1,5 @@
+enum BusinessUnitEnum {
+    MM
+    SMKT
+    KUPER
+}
